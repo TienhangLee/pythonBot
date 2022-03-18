@@ -27,9 +27,9 @@ from decimal import Decimal, getcontext, setcontext,ROUND_DOWN, ROUND_UP,ROUND_C
 nest_asyncio.apply()
 
 
-api_key = "dd7af096-f986-4d84-ad35-a80b6837e7af"
-secret_key = "D08BF29F3DD27F9B15780764DC583307"
-passphrase = "uuu234"
+api_key = ""
+secret_key = ""
+passphrase = ""
 
 flag = '0'
 fundingAPI = Funding.FundingAPI(api_key, secret_key, passphrase, False, flag)
