@@ -1,0 +1,64 @@
+<table class="table table-dark table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Customer_ID</th>
+      <th scope="col">总资产估值(USDT)</th>
+      <th scope="col">建仓美金价值(USDT)</th>
+      <th scope="col">全仓保证金率(%)</th>
+      <th scope="col">当期资费收益(USDT)</th>
+      <th scope="col">当期资费收益率(%)</th>
+      <th scope="col">下期资费预估收益(USDT)</th>
+      <th scope="col">Timestamp</th>
+    </tr>
+  </thead>
+  <tbody id="table_body">
+    {% for match in matches %}
+      <tr>
+        <td id="id_{{ match.id }}">{{ match.id }}</td>
+        <td id="总资产估值_{{ match.id }}">{{ match.总资产估值 }}</td>
+        <td id="建仓美金价值_{{ match.id }}">{{ match.建仓美金价值}}</td>
+        <td id="全仓保证金率_{{ match.id }}">{{ match.全仓保证金率}}</td>
+        <td id="当期资费收益_{{ match.id }}">{{ match.当期资费收益}}</td>
+        <td id="当期资费收益率_{{ match.id }}">{{ match.当期资费收益率}}</td>
+        <td id="下期资费预估收益_{{ match.id }}">{{ match.下期资费预估收益}}</td>
+        <td id="Timestamp_{{ match.id }}">{{ match.Timestamp }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<script>
+  setInterval(function() {    
+      fetch('/data_json').then(
+        response => response.json()
+      ).then(
+        data =>
+          data.forEach(match =>
+            updateElement(match)
+          )
+      )
+    }, 1000
+  );
+
+function updateElement(match) {
+    Object.entries(match).forEach(([k,v]) => {
+        element = document.getElementById(k + "_" + match.id);
+        // Get Previous value first
+        previousValue = element.innerHTML;
+
+        // If Previous value is not equal to the new value, change it!
+        if (previousValue !== v.toString()) {
+            blinkUpdate(element, v.toString())
+        }
+    })
+}
+
+function blinkUpdate(element, newValue, newColor='#00ff00') {
+    previousColor = element.style.color;
+    element.innerHTML = newValue;
+    element.style.color = newColor;
+    // Set back to original color after timeout ms
+    setTimeout(() => {
+        element.style.color = previousColor
+    }, 2000)
+}
+</script>
