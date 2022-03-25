@@ -2753,8 +2753,8 @@ if __name__ == "__main__":
     api_key = ''
     api_secret =''
     client = Client(api_key, api_secret)
-
-    TradingPair = {'DOGEUSDT':600,'ALICEUSDT':600,'C98USDT':500}
+    #{'DOGEUSDT':600,'ALICEUSDT':600,'C98USDT':500}
+    TradingPair = { 'DOGEUSDT':600,'ALICEUSDT':600,'C98USDT':500}
     Customer_name=' little binance'
     margin_instrument_id_1='DOGEUSDT'
     margin_instrument_id_2='ALICEUSDT'

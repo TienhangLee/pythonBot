@@ -2950,10 +2950,9 @@ if __name__=='__main__':
     tradeAPI = Trade.TradeAPI(api_key, secret_key, passphrase, False, flag)
     accountAPI = Account.AccountAPI(api_key, secret_key, passphrase, False, flag)
     marketAPI = Market.MarketAPI(api_key, secret_key, passphrase, False, flag)
- #   TradingPair ={'MINA-USDT': 40000,'FLM-USDT': 77700,'IOTA-USDT': 210000,'FLM-USDT': 75000,'BABYDOGE-USDT': 60000,'GALA-USDT': 250000,\
- #                    'YGG-USDT': 82000,'IOST-USDT': 91000,'SWRV-USDT': 110000,'LUNA-USDT': 88800,'SAND-USDT': 90000,'ENS-USDT': 76000}
-    TradingPair ={'STARL-USDT':80000}
-    Customer_name='Matrixport'
+
+    TradingPair ={}
+    Customer_name=''
     total_balance_hour = precfloat(accountAPI.get_account()['data'][0]['totalEq'], 3)  #这是u
     #total_balance = precfloat(accountAPI.get_account()['data'][0]['totalEq'], 3)
 
