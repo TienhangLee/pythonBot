@@ -12,5 +12,8 @@ urlpatterns = [
     path('fortest6/', deleteEquityValue),
     path('fortest7/', del_equityValue),
     path('equityvalue/', show_equityValue),
+    path('TRC20address/', show_trc20Address),
+    path('ERC20address/', show_erc20Address),
+    path('FILaddress/', show_filAddress),
 ]
 

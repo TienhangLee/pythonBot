@@ -1,5 +1,5 @@
 from django.db import models
-from matrixport2.models import equityValue
+from matrixport2.models import *
 from django.http import JsonResponse
 import time, datetime
 import os
@@ -136,3 +136,62 @@ def show_equityValue(request):
     retlist = list(qs)
 
     return JsonResponse({'ret': 0, 'retlist': retlist[len(retlist)-1]})
+  
+  
+def show_trc20Address(request):
+        # 返回一个 QuerySet 对象 ，包含所有的表记录
+  qs = TRC20Address.objects.values()
+  
+  ur =  request.GET.get('username',None)
+  if ur:
+    qs = qs.filter(username=ur)
+      
+  cd =  request.GET.get('customerId',None)
+  if cd:
+    qs = qs.filter(customerId=cd)
+
+  # 将 QuerySet 对象 转化为 list 类型
+  retlist = list(qs)
+  if len(retlist) ==0:
+    return JsonResponse({'ret': 1, 'msg': 'No qualified data. Your params would be wrong.'})
+  else:
+    return JsonResponse({'ret': 0, 'retlist': retlist[0]})  #给最旧然后没用过的资料
+   
+  
+def show_erc20Address(request):
+        # 返回一个 QuerySet 对象 ，包含所有的表记录
+  qs = ERC20Address.objects.values()
+  
+  ur =  request.GET.get('username',None)
+  if ur:
+    qs = qs.filter(username=ur)
+      
+  cd =  request.GET.get('customerId',None)
+  if cd:
+    qs = qs.filter(customerId=cd)
+
+  # 将 QuerySet 对象 转化为 list 类型
+  retlist = list(qs)
+  if len(retlist) ==0:
+    return JsonResponse({'ret': 1, 'msg': 'No qualified data. Your params would be wrong.'})
+  else:
+    return JsonResponse({'ret': 0, 'retlist': retlist[0]})  #给最旧然后没用过的资料
+  
+def show_filAddress(request):
+        # 返回一个 QuerySet 对象 ，包含所有的表记录
+  qs = FILAddress.objects.values()
+  
+  ur =  request.GET.get('username',None)
+  if ur:
+    qs = qs.filter(username=ur)
+      
+  cd =  request.GET.get('customerId',None)
+  if cd:
+    qs = qs.filter(customerId=cd)
+
+  # 将 QuerySet 对象 转化为 list 类型
+  retlist = list(qs)
+  if len(retlist) ==0:
+    return JsonResponse({'ret': 1, 'msg': 'No qualified data. Your params would be wrong.'})
+  else:
+    return JsonResponse({'ret': 0, 'retlist': retlist[0]})  #给最旧然后没用过的资料
