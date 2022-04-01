@@ -46,10 +46,16 @@ def addequityValue(request):
     b=time.localtime(int(timestamp))
     timestamp_datetime=time.strftime("%Y-%m-%d %H:%M:%S",b)
     
-    o=datetime.datetime.strptime(timestamp_datetime, "%Y-%m-%d %H:%M:%S")
+    presentTime=int(time.time())
+    a="2022-03-15 0:00:00"    #以后可在此改基准时间
+    c=time.strptime(a, "%Y-%m-%d %H:%M:%S")
+    begintime=int(time.mktime(c))
+    
+    passedDay = int((presentTime - begintime)/86400)
+    
     totalBal=float(asset_valuation_result['data'][0]['totalBal'])
     daylyInterest=0.08/365*800000
-    passedDay=o.day-15
+ 
     instrestCost=daylyInterest*passedDay
     totalBalance=Tools.precfloat(((totalBal-800000)-instrestCost),2)    #总资产估值
     
